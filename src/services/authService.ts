@@ -4,15 +4,29 @@ const API_URL = "http://localhost:5000/auth";
 
 export const loginUser = async (email: string, password: string) => {
   try {
-    const response = await axios.post(`${API_URL}/login`, {
+    const res = await axios.post(`${API_URL}/login`, {
       email,
       password,
     });
+    return res.data;
+  } catch (err: any) {
+    throw new Error(err.response?.data?.error || "Login failed");
+  }
+};
 
-    return response.data;
-  } catch (error: any) {
-    throw new Error(
-      error.response?.data?.message || "Login failed"
-    );
+export const registerUser = async (
+  name: string,
+  email: string,
+  password: string
+) => {
+  try {
+    const res = await axios.post(`${API_URL}/register`, {
+      name,
+      email,
+      password,
+    });
+    return res.data;
+  } catch (err: any) {
+    throw new Error(err.response?.data?.error || "Signup failed");
   }
 };

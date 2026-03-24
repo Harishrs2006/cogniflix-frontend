@@ -1,42 +1,31 @@
 import { useState } from "react";
 import { Mail, Lock, Eye } from "lucide-react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../services/authService";
 import "./login.css";
 
 export default function LoginPage() {
   const [show, setShow] = useState(false);
 
-  // ✅ ADD THESE STATES
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // ✅ LOGIN FUNCTION
+  const navigate = useNavigate();
+
   const handleLogin = async () => {
     setError("");
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
-      });
+      const data = await loginUser(email, password);
 
-      const data = await res.json();
-
-      // 🔴 IMPORTANT
-      if (!res.ok) {
-        throw new Error(data.message || "Invalid email or password");
-      }
-
-      // ✅ SUCCESS
       localStorage.setItem("token", data.token);
-      window.location.href = "/dashboard";
 
+      navigate("/dashboard");
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -46,23 +35,13 @@ export default function LoginPage() {
 
   return (
     <div className="container">
-
       <div className="bgOverlay" />
 
-      <motion.div
-        className="left"
-        initial={{ opacity: 0, x: -60 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7 }}
-      >
+      <motion.div className="left">
         <div className="card">
-
           <h1 className="logo">COGNIFLIX</h1>
-          <p className="subtitle">
-            Context-Aware Streaming Experience
-          </p>
+          <p className="subtitle">Context-Aware Streaming Experience</p>
 
-          {/* EMAIL */}
           <div className="inputBox">
             <Mail size={18} />
             <input
@@ -72,7 +51,6 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* PASSWORD */}
           <div className="inputBox">
             <Lock size={18} />
             <input
@@ -81,11 +59,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Eye
-              size={18}
-              className="eye"
-              onClick={() => setShow(!show)}
-            />
+            <Eye className="eye" onClick={() => setShow(!show)} />
           </div>
 
           <div className="row">
@@ -93,25 +67,25 @@ export default function LoginPage() {
               <input type="checkbox" />
               Remember Me
             </label>
-            <span className="link">Forgot Password?</span>
+
+            <span
+              className="link"
+              onClick={() => alert("Feature not implemented")}
+            >
+              Forgot Password?
+            </span>
           </div>
 
-          {/* 🔴 BUTTON FIX */}
           <motion.button
             className="loginBtn"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
             onClick={handleLogin}
             disabled={loading}
           >
             {loading ? "Logging in..." : "Login"}
           </motion.button>
 
-          {/* 🔴 ERROR MESSAGE (NO DESIGN CHANGE) */}
           {error && (
-            <p style={{ color: "red", marginTop: "10px" }}>
-              {error}
-            </p>
+            <p style={{ color: "red", marginTop: "10px" }}>{error}</p>
           )}
 
           <div className="divider">OR</div>
@@ -120,18 +94,13 @@ export default function LoginPage() {
           <button className="oauthBtn">Continue with GitHub</button>
 
           <p className="signup">
-            New to Cogniflix? <span>Sign Up</span>
+            New to Cogniflix?{" "}
+            <span onClick={() => navigate("/signup")}>Sign Up</span>
           </p>
-
         </div>
       </motion.div>
 
-      <motion.div
-        className="right"
-        initial={{ opacity: 0, x: 60 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7 }}
-      >
+      <motion.div className="right">
         <h2>Why Cogniflix?</h2>
         <p className="rightSub">
           Experience streaming like never before
