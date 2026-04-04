@@ -1,12 +1,17 @@
 import axios from "axios";
 
-const API_URL = `${import.meta.env.VITE_API_URL}/auth`;
+// ✅ SINGLE SOURCE OF TRUTH (no env dependency)
+const API_BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://cogniflix-backend.onrender.com";
 
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: `${API_BASE_URL}/auth`,
   withCredentials: true,
 });
 
+// ================= LOGIN =================
 export const loginUser = async (email: string, password: string) => {
   try {
     const res = await api.post("/login", {
@@ -19,6 +24,7 @@ export const loginUser = async (email: string, password: string) => {
   }
 };
 
+// ================= REGISTER =================
 export const registerUser = async (
   name: string,
   email: string,
@@ -36,6 +42,7 @@ export const registerUser = async (
   }
 };
 
+// ================= GET USER =================
 export const getCurrentUser = async () => {
   try {
     const res = await api.get("/me");
@@ -45,10 +52,11 @@ export const getCurrentUser = async () => {
   }
 };
 
+// ================= LOGOUT =================
 export const logoutUser = async () => {
   try {
     await api.post("/logout");
-  } catch (err) {
+  } catch {
     console.error("Logout failed");
   }
 };
