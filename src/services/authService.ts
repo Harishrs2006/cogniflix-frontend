@@ -1,10 +1,15 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/auth";
+const API_URL = "https://cogniflix-backend.onrender.com/auth";
+
+const api = axios.create({
+  baseURL: API_URL,
+  withCredentials: true,
+});
 
 export const loginUser = async (email: string, password: string) => {
   try {
-    const res = await axios.post(`${API_URL}/login`, {
+    const res = await api.post("/login", {
       email,
       password,
     });
@@ -20,7 +25,7 @@ export const registerUser = async (
   password: string
 ) => {
   try {
-    const res = await axios.post(`${API_URL}/register`, {
+    const res = await api.post("/register", {
       name,
       email,
       password,
@@ -28,5 +33,22 @@ export const registerUser = async (
     return res.data;
   } catch (err: any) {
     throw new Error(err.response?.data?.error || "Signup failed");
+  }
+};
+
+export const getCurrentUser = async () => {
+  try {
+    const res = await api.get("/me");
+    return res.data;
+  } catch {
+    throw new Error("Not authenticated");
+  }
+};
+
+export const logoutUser = async () => {
+  try {
+    await api.post("/logout");
+  } catch (err) {
+    console.error("Logout failed");
   }
 };

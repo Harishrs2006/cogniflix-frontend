@@ -1,16 +1,26 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getCurrentUser, logoutUser } from "../services/authService";
 
 export default function DashboardPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const checkAuth = async () => {
+      try {
+        await getCurrentUser();
+      } catch {
+        navigate("/");
+      }
+    };
 
-    if (!token) {
-      navigate("/");
-    }
+    checkAuth();
   }, []);
+
+  const handleLogout = async () => {
+    await logoutUser();
+    navigate("/");
+  };
 
   return (
     <div
@@ -27,12 +37,7 @@ export default function DashboardPage() {
     >
       <h1>Welcome to Dashboard 🚀</h1>
 
-      <button
-        onClick={() => {
-          localStorage.removeItem("token");
-          window.location.href = "/";
-        }}
-      >
+      <button onClick={handleLogout}>
         Logout
       </button>
     </div>

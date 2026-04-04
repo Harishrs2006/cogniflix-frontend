@@ -16,22 +16,21 @@ export default function LoginPage() {
 
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    setError("");
-    setLoading(true);
+const handleLogin = async () => {
+  setError("");
+  setLoading(true);
 
-    try {
-      const data = await loginUser(email, password);
+  try {
+    await loginUser(email, password);
 
-      localStorage.setItem("token", data.token);
-
-      navigate("/dashboard");
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+    // cookie is already set by backend
+    navigate("/dashboard");
+  } catch (err: any) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="container">
