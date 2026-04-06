@@ -14,12 +14,18 @@ export default function SignupPage() {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isSlow, setIsSlow] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSignup = async () => {
     setError("");
     setLoading(true);
+    setIsSlow(false);
+
+    const timer = setTimeout(() => {
+      setIsSlow(true);
+    }, 5000);
 
     try {
       await registerUser(name, email, password);
@@ -27,7 +33,9 @@ export default function SignupPage() {
     } catch (err: any) {
       setError(err.message);
     } finally {
+      clearTimeout(timer);
       setLoading(false);
+      setIsSlow(false);
     }
   };
 
@@ -75,6 +83,12 @@ export default function SignupPage() {
           </motion.button>
 
           {error && <p style={{ color: "red" }}>{error}</p>}
+          
+          {isSlow && !error && (
+            <p style={{ color: "#f39c12", marginTop: "10px", fontSize: "14px", textAlign: "center" }}>
+              Backend is waking up. This may take up to 60 seconds... Please wait.
+            </p>
+          )}
 
           <p className="signup">
             Already have an account?{" "}
