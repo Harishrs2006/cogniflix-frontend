@@ -8,9 +8,9 @@ import "./login.css";
 export default function SignupPage() {
   const [show, setShow] = useState(false);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState("Test");
+  const [email, setEmail] = useState("test@mail.com");
+  const [password, setPassword] = useState("Test@123");
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);

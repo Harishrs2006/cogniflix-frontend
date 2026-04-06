@@ -8,8 +8,8 @@ import "./login.css";
 export default function LoginPage() {
   const [show, setShow] = useState(false);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test@mail.com");
+  const [password, setPassword] = useState("Test@123");
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
