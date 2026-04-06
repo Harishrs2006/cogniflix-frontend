@@ -60,3 +60,13 @@ export const logoutUser = async () => {
     console.error("Logout failed");
   }
 };
+
+// ================= WAKE UP SERVER =================
+export const wakeUpBackend = async () => {
+  try {
+    // Just a ping to wake up from free tier sleep
+    await axios.get(`${API_BASE_URL}/test`);
+  } catch (err) {
+    // Ignore error
+  }
+};
