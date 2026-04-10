@@ -30,8 +30,12 @@ export default function SignupPage() {
     try {
       await registerUser(name, email, password);
       navigate("/");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An error occurred");
+      }
     } finally {
       clearTimeout(timer);
       setLoading(false);

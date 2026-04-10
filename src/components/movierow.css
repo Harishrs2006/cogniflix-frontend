@@ -1,0 +1,21 @@
+.row-container {
+  margin: 40px 0;
+  padding: 0 60px;
+}
+
+.row-wrapper {
+  position: relative;
+}
+
+.row {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+}
+
+.row::-webkit-scrollbar {
+  display: none;
+}

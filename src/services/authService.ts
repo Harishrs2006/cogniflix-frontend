@@ -1,26 +1,23 @@
 import axios from "axios";
 
-// ✅ SINGLE SOURCE OF TRUTH (no env dependency)
 const API_BASE_URL =
   window.location.hostname === "localhost"
     ? "http://localhost:5000"
     : "https://cogniflix-backend.onrender.com";
 
 const api = axios.create({
-  baseURL: `${API_BASE_URL}/auth`,
+  baseURL: `${API_BASE_URL}/api/auth`,
   withCredentials: true,
 });
 
 // ================= LOGIN =================
 export const loginUser = async (email: string, password: string) => {
   try {
-    const res = await api.post("/login", {
-      email,
-      password,
-    });
+    const res = await api.post("/login", { email, password });
     return res.data;
-  } catch (err: any) {
-    throw new Error(err.response?.data?.error || "Login failed");
+  } catch (err: unknown) {
+    const e = err as { response?: { data?: { error?: string } } };
+    throw new Error(e.response?.data?.error || "Login failed");
   }
 };
 
@@ -31,18 +28,15 @@ export const registerUser = async (
   password: string
 ) => {
   try {
-    const res = await api.post("/register", {
-      name,
-      email,
-      password,
-    });
+    const res = await api.post("/register", { name, email, password });
     return res.data;
-  } catch (err: any) {
-    throw new Error(err.response?.data?.error || "Signup failed");
+  } catch (err: unknown) {
+    const e = err as { response?: { data?: { error?: string } } };
+    throw new Error(e.response?.data?.error || "Signup failed");
   }
 };
 
-// ================= GET USER =================
+// ================= GET CURRENT USER =================
 export const getCurrentUser = async () => {
   try {
     const res = await api.get("/me");
@@ -61,12 +55,11 @@ export const logoutUser = async () => {
   }
 };
 
-// ================= WAKE UP SERVER =================
+// ================= WAKE UP BACKEND =================
 export const wakeUpBackend = async () => {
   try {
-    // Just a ping to wake up from free tier sleep
-    await axios.get(`${API_BASE_URL}/test`);
-  } catch (err) {
-    // Ignore error
+    await axios.get(`${API_BASE_URL}/api/test`);
+  } catch {
+    // Ignore — just a ping to wake free-tier server
   }
 };

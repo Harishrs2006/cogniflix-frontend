@@ -1,0 +1,16 @@
+import type { Movie } from "../services/movieService";
+import MovieCard from "./MovieCard";
+import "./moviegrid.css";
+
+export default function MovieGrid({ movies }: { movies: Movie[] }) {
+  return (
+    <div className="movie-grid-container">
+      <h2>Trending Now</h2>
+      <div className="grid">
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+      </div>
+    </div>
+  );
+}
