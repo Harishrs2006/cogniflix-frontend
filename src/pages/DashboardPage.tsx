@@ -75,13 +75,13 @@ export default function DashboardPage() {
         </div>
 
         {selectedGenre ? (
-          <MovieRow title={`Movies: ${selectedGenre}`} movies={filteredMovies} onInteraction={loadData} />
+          <MovieRow title={`Movies: ${selectedGenre}`} movies={filteredMovies} />
         ) : (
           <>
-            {recommended.length > 0 && <MovieRow title="Recommended For You" movies={recommended} onInteraction={loadData} />}
-            {trending.length > 0 && <MovieRow title="Trending Now" movies={trending} onInteraction={loadData} />}
-            {history.length > 0 && <MovieRow title="Watch Again" movies={history} onInteraction={loadData} />}
-            <MovieRow title="Popular" movies={filteredMovies} onInteraction={loadData} />
+            {recommended.length > 0 && <MovieRow title="Recommended For You" movies={recommended} />}
+            {trending.length > 0 && <MovieRow title="Trending Now" movies={trending} />}
+            {history.length > 0 && <MovieRow title="Watch Again" movies={history} />}
+            <MovieRow title="Popular" movies={filteredMovies} />
           </>
         )}
       </div>

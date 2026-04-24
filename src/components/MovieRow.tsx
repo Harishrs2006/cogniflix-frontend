@@ -8,10 +8,9 @@ import type { Movie } from "../services/movieService";
 interface MovieRowProps {
   title: string;
   movies: Movie[];
-  onInteraction?: () => void;
 }
 
-export default function MovieRow({ title, movies, onInteraction }: MovieRowProps) {
+export default function MovieRow({ title, movies }: MovieRowProps) {
   const rowRef = useRef<HTMLDivElement | null>(null);
 
   const scroll = (dir: "left" | "right") => {
@@ -48,7 +47,7 @@ export default function MovieRow({ title, movies, onInteraction }: MovieRowProps
         <div className="mrow__track" ref={rowRef}>
           {Array.isArray(movies) &&
             movies.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} onInteraction={onInteraction} />
+              <MovieCard key={movie.id} movie={movie} />
             ))}
         </div>
 

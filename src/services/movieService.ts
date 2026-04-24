@@ -7,10 +7,18 @@ export type Movie = {
   popularity_score?: number;
   genre?: string;
   language?: string;
+  description?: string;
+  emotion_name?: string;
+  region?: string;
 };
 
 type MovieResponse = {
   movies: Movie[];
+};
+
+export const fetchMovieById = async (id: string): Promise<Movie> => {
+  const res = await api.get<{movie: Movie}>(`/api/movies/${id}`);
+  return res.data.movie;
 };
 
 export const fetchMovies = async (genre?: string): Promise<Movie[]> => {
