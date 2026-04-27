@@ -1,3 +1,19 @@
+/*
+FILE: MovieRow.tsx
+
+PURPOSE:
+Displays a horizontal scrollable row of movies.
+
+FLOW:
+Component -> API Call -> Backend -> Response -> UI Render
+
+USED BY:
+DashboardPage.tsx
+
+NEXT FLOW:
+MovieCard.tsx
+
+*/
 import { useRef } from "react";
 import MovieCard from "./MovieCard";
 import "./movierow.css";

@@ -1,3 +1,19 @@
+/*
+FILE: eslint.config.js
+
+PURPOSE:
+Configures ESLint rules for the frontend project.
+
+FLOW:
+Editor/CLI -> ESLint -> Code Validation
+
+USED BY:
+Linter execution
+
+NEXT FLOW:
+None
+
+*/
 import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'

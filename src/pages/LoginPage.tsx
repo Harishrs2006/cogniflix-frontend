@@ -1,3 +1,19 @@
+/*
+FILE: LoginPage.tsx
+
+PURPOSE:
+Handles user authentication input and form submission.
+
+FLOW:
+Component -> Form Submit -> authService -> Backend -> AuthContext Update
+
+USED BY:
+AppRoutes.tsx
+
+NEXT FLOW:
+authService.ts
+
+*/
 import { useState } from "react";
 import { Mail, Lock, Eye } from "lucide-react";
 import { motion } from "framer-motion";

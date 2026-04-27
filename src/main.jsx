@@ -1,3 +1,19 @@
+/*
+FILE: main.jsx
+
+PURPOSE:
+React DOM rendering entry point.
+
+FLOW:
+Browser Load -> main.jsx -> App Render
+
+USED BY:
+index.html
+
+NEXT FLOW:
+App.tsx
+
+*/
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";

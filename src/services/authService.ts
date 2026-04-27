@@ -1,3 +1,19 @@
+/*
+FILE: authService.ts
+
+PURPOSE:
+Provides API methods for authentication operations (login, register).
+
+FLOW:
+Frontend Component -> Auth Service -> api.ts -> Backend
+
+USED BY:
+LoginPage.tsx, SignupPage.tsx, AuthContext.tsx
+
+NEXT FLOW:
+Backend auth routes
+
+*/
 import api from "./api";
 
 // ================= LOGIN =================

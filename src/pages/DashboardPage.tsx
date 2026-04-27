@@ -1,3 +1,19 @@
+/*
+FILE: DashboardPage.tsx
+
+PURPOSE:
+Main landing page for authenticated users showing personalized content.
+
+FLOW:
+Component -> API Call -> Backend -> Response -> UI Render
+
+USED BY:
+AppRoutes.tsx
+
+NEXT FLOW:
+recommendation API call, MovieRow components
+
+*/
 import { useEffect, useState } from "react";
 import HeroBanner from "../components/HeroBanner";
 import MovieRow from "../components/MovieRow";

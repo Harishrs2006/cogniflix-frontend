@@ -1,3 +1,19 @@
+/*
+FILE: TvShowsPage.tsx
+
+PURPOSE:
+Displays the main TV show browsing catalog.
+
+FLOW:
+Component -> API Call -> Backend -> Response -> UI Render
+
+USED BY:
+AppRoutes.tsx
+
+NEXT FLOW:
+movieService.ts, MovieGrid/Row components
+
+*/
 import { useEffect, useState } from "react";
 import { fetchTvShows } from "../services/movieService";
 import type { Movie } from "../services/movieService";

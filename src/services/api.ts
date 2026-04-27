@@ -1,3 +1,19 @@
+/*
+FILE: api.ts
+
+PURPOSE:
+Handles base Axios configuration and interceptors for backend API calls.
+
+FLOW:
+Frontend -> API Service -> Backend
+
+USED BY:
+All service files
+
+NEXT FLOW:
+Backend routes
+
+*/
 import axios from 'axios';
 
 const API_BASE_URL =

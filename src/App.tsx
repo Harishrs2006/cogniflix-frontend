@@ -1,3 +1,19 @@
+/*
+FILE: App.tsx
+
+PURPOSE:
+Root application component wrapping providers and global layout.
+
+FLOW:
+Component -> API Call -> Backend -> Response -> UI Render
+
+USED BY:
+main.jsx
+
+NEXT FLOW:
+AuthContext, MovieContext, AppRoutes
+
+*/
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import MainLayout from "./layouts/MainLayout";

@@ -1,3 +1,19 @@
+/*
+FILE: MovieCard.tsx
+
+PURPOSE:
+Displays an individual movie thumbnail and handles click interactions.
+
+FLOW:
+Component -> Click Event -> Navigation/Modal
+
+USED BY:
+MovieRow.tsx, MovieGrid.tsx
+
+NEXT FLOW:
+MovieInfoPage.tsx
+
+*/
 import { useNavigate, useLocation } from "react-router-dom";
 import "./moviecard.css";
 import { type Movie } from "../services/movieService";

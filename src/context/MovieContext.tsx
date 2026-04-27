@@ -1,3 +1,19 @@
+/*
+FILE: MovieContext.tsx
+
+PURPOSE:
+Provides global state for movie-related data (e.g., watch list).
+
+FLOW:
+Context -> Components -> UI Update based on data
+
+USED BY:
+App.tsx, MovieCard.tsx
+
+NEXT FLOW:
+None
+
+*/
 import React, { createContext, useContext, useState } from "react";
 import type { Movie } from "../services/movieService";
 

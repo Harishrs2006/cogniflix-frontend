@@ -1,3 +1,19 @@
+/*
+FILE: movieService.ts
+
+PURPOSE:
+Provides API methods for fetching movie and TV show data.
+
+FLOW:
+Frontend Component -> Movie Service -> api.ts -> Backend
+
+USED BY:
+DashboardPage.tsx, MoviesPage.tsx, MovieInfoPage.tsx
+
+NEXT FLOW:
+Backend movie/recommendation routes
+
+*/
 import api from "./api";
 
 export type Movie = {

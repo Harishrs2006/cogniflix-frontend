@@ -1,3 +1,19 @@
+/*
+FILE: ProtectedRoute.tsx
+
+PURPOSE:
+Guards routes requiring authentication, redirecting if necessary.
+
+FLOW:
+Router -> ProtectedRoute -> Check Auth -> Render Child/Redirect
+
+USED BY:
+AppRoutes.tsx
+
+NEXT FLOW:
+DashboardPage.tsx or LoginPage.tsx
+
+*/
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import SkeletonLoader from "./SkeletonLoader";
